@@ -16,7 +16,6 @@ import org.springframework.web.context.request.WebRequest;
 import com.diegojacober.eateasyapi.rest.controller.dto.errors.ErrorDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.errors.ErrorObject;
 
-import io.jsonwebtoken.MalformedJwtException;
 
 @ControllerAdvice
 public class RestExceptionHandler {
