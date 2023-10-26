@@ -13,7 +13,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import com.diegojacober.eateasyapi.filters.CustomAuthenticationEntryPoint;
 import com.diegojacober.eateasyapi.filters.JWTAuthenticationFilter;
 
 import jakarta.servlet.DispatcherType;
@@ -34,16 +33,11 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpMethod.PUT;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfig {
-
-        @Autowired
-        private CustomAuthenticationEntryPoint authenticationEntryPoint;
 
         private static final String[] WHITE_LIST_URL = { "/api/v1/auth/**",
                         "/v2/api-docs",
