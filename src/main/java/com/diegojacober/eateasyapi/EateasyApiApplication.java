@@ -21,23 +21,23 @@ public class EateasyApiApplication {
 	public CommandLineRunner commandLineRunner(
 			AuthenticationService service) {
 		return args -> {
-			var admin = RegisterRequestDTO.builder()
-					.firstname("Admin")
-					.lastname("Admin")
-					.email("admin@mail.com")
-					.password("password")
-					.role(ADMIN)
-					.build();
-			System.out.println("Admin token: " + service.register(admin).getAccessToken());
+			// var admin = RegisterRequestDTO.builder()
+			// 		.firstname("Admin")
+			// 		.lastname("Admin")
+			// 		.email("admin@mail.com")
+			// 		.password("password")
+			// 		.role(ADMIN)
+			// 		.build();
+			// System.out.println("Admin token: " + service.register(admin).getAccessToken());
 
-			var manager = RegisterRequestDTO.builder()
-					.firstname("Admin")
-					.lastname("Admin")
-					.email("manager@mail.com")
-					.password("password")
-					.role(MANAGER)
-					.build();
-			System.out.println("Manager token: " + service.register(manager).getAccessToken());
+			// var manager = RegisterRequestDTO.builder()
+			// 		.firstname("Admin")
+			// 		.lastname("Admin")
+			// 		.email("manager@mail.com")
+			// 		.password("password")
+			// 		.role(MANAGER)
+			// 		.build();
+			// System.out.println("Manager token: " + service.register(manager).getAccessToken());
 
 		};
 	}

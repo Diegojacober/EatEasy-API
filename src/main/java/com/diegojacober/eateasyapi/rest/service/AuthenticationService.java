@@ -12,6 +12,7 @@ import com.diegojacober.eateasyapi.domain.entity.enums.TokenType;
 import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationRequestDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationResponseDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.exceptions.UserExistsException;
 import com.diegojacober.eateasyapi.rest.repository.TokenRepository;
 import com.diegojacober.eateasyapi.rest.repository.UserRepository;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
@@ -32,7 +33,14 @@ public class AuthenticationService {
     private final JWTService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponseDTO register(RegisterRequestDTO request) {
+    public AuthenticationResponseDTO register(RegisterRequestDTO request) throws UserExistsException {
+
+        String userEmail = request.getEmail();
+
+        if (repository.findByEmail(userEmail).isPresent()) {
+            throw new UserExistsException();
+        }
+
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())

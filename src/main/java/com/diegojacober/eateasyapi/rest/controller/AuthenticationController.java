@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationRequestDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationResponseDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.exceptions.UserExistsException;
 import com.diegojacober.eateasyapi.rest.service.AuthenticationService;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -19,6 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -28,24 +30,21 @@ public class AuthenticationController {
 
   @PostMapping("/register")
   public ResponseEntity<AuthenticationResponseDTO> register(
-      @RequestBody @Valid RegisterRequestDTO request
-  ) {
+      @RequestBody @Valid RegisterRequestDTO request) throws UserExistsException {
     return ResponseEntity.ok(service.register(request));
   }
+
   @PostMapping("/authenticate")
   public ResponseEntity<AuthenticationResponseDTO> authenticate(
-      @RequestBody @Valid AuthenticationRequestDTO request
-  ) {
+      @RequestBody @Valid AuthenticationRequestDTO request) {
     return ResponseEntity.ok(service.authenticate(request));
   }
 
   @PostMapping("/refresh-token")
   public void refreshToken(
       HttpServletRequest request,
-      HttpServletResponse response
-  ) throws IOException, StreamWriteException, DatabindException, java.io.IOException {
+      HttpServletResponse response) throws IOException, StreamWriteException, DatabindException, java.io.IOException {
     service.refreshToken(request, response);
   }
-
 
 }

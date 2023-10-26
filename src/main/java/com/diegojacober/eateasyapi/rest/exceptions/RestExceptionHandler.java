@@ -1,8 +1,10 @@
 package com.diegojacober.eateasyapi.rest.exceptions;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.HashMap;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -13,6 +15,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.diegojacober.eateasyapi.rest.controller.dto.errors.ErrorDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.errors.ErrorObject;
+
+import io.jsonwebtoken.MalformedJwtException;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -44,4 +48,12 @@ public class RestExceptionHandler {
 
         return ResponseEntity.badRequest().body(apiErrorMessage);
     }
+
+    @ExceptionHandler(UserExistsException.class)
+    public ResponseEntity<Map<String, String>> userExistsException(UserExistsException ex) {
+        HashMap<String, String> message = new HashMap<String, String>();
+        message.put("message", ex.getMessage());
+        return ResponseEntity.badRequest().body(message);
+    }
+
 }
