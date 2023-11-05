@@ -49,14 +49,15 @@ public class SecurityConfig {
                         "/configuration/security",
                         "/swagger-ui/**",
                         "/webjars/**",
-                        "/swagger-ui.html" };
+                        "/swagger-ui.html",
+                        "/api/v1/products/**", };
         private final JWTAuthenticationFilter jwtAuthFilter;
         private final AuthenticationProvider authenticationProvider;
         private final LogoutHandler logoutHandler;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                http            
+                http
                                 .csrf(AbstractHttpConfigurer::disable)
                                 .cors((cors) -> cors.disable())
                                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL)
