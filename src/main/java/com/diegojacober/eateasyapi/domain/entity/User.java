@@ -2,6 +2,7 @@ package com.diegojacober.eateasyapi.domain.entity;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -83,4 +85,7 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return true;
   }
+
+  @OneToMany( mappedBy = "user" , fetch = FetchType.LAZY )
+    private Set<Order> orders;
 }
