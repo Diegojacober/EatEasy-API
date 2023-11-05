@@ -74,6 +74,12 @@ public class OrderService {
         }).collect(Collectors.toList());
     }
 
+    public List<Order> getOrdersByUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        return repository.findByUserOrderByOrderDate(user);
+    }
+
     public Optional<Order> getCompleteOrder(Integer id) {
         return repository.findByIdFetchItems(id);
     }

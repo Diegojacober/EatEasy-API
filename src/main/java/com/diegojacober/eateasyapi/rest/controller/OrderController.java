@@ -3,6 +3,7 @@ package com.diegojacober.eateasyapi.rest.controller;
 import static org.springframework.http.HttpStatus.*;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +47,20 @@ public class OrderController {
     public OrderInformationDTO getById(@PathVariable Integer id) {
         return service.getCompleteOrder(id).map(o -> convert(o))
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Order not found"));
+    }
+
+    @GetMapping("myorders")
+    public List<OrderInformationDTO> getByUser() {
+        List<Order> ordersByUser = service.getOrdersByUser();
+
+        List<OrderInformationDTO> dto = new ArrayList<>();
+
+        for (Order order : ordersByUser) {
+            dto.add(
+                    getById(order.getId()));
+        }
+
+        return dto;
     }
 
     private OrderInformationDTO convert(Order order) {
