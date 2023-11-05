@@ -55,4 +55,10 @@ public class RestExceptionHandler {
         return ResponseEntity.badRequest().body(message);
     }
 
+    @ExceptionHandler(BussinessException.class)
+    public ResponseEntity<Map<String, String>> bussinessException(BussinessException ex) {
+        HashMap<String, String> message = new HashMap<String, String>();
+        message.put("message", ex.getMessage());
+        return ResponseEntity.badRequest().body(message);
+    }
 }

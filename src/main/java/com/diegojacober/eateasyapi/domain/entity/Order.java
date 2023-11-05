@@ -1,6 +1,5 @@
 package com.diegojacober.eateasyapi.domain.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
@@ -37,8 +36,8 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
-    @Column(name = "total", precision = 20, scale = 2)
-    private BigDecimal total;
+    @Column(columnDefinition = "DECIMAL(10,2)")
+    private Double total;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> items;
