@@ -18,4 +18,7 @@ public class OrderDTO {
 
     @NotEmptyList
     private List<OrderItemDTO> items;
+
+    @NotNull
+    private Integer restaurantId;
 }

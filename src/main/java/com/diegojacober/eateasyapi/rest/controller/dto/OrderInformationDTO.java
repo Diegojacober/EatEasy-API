@@ -2,6 +2,8 @@ package com.diegojacober.eateasyapi.rest.controller.dto;
 
 import java.util.List;
 
+import com.diegojacober.eateasyapi.domain.entity.Restaurant;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +19,5 @@ public class OrderInformationDTO {
     private Double total;
     private String orderDate;
     private List<OrderItemInformationDTO> items;
+    private Restaurant restaurant;
 }

@@ -38,5 +38,5 @@ public class Restaurant {
     private Date createdAt;
 
     @OneToMany( mappedBy = "restaurant" , fetch = FetchType.LAZY )
-    private Set<Product> pedidos;
+    private Set<Product> orders;
 }

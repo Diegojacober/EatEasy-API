@@ -21,6 +21,7 @@ import com.diegojacober.eateasyapi.rest.exceptions.BussinessException;
 import com.diegojacober.eateasyapi.rest.repository.OrderItemRepository;
 import com.diegojacober.eateasyapi.rest.repository.OrderRepository;
 import com.diegojacober.eateasyapi.rest.repository.ProductRepository;
+import com.diegojacober.eateasyapi.rest.repository.RestaurantRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,9 @@ public class OrderService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
     @Transactional
     public Order save(OrderDTO dto) {
 
@@ -47,7 +51,7 @@ public class OrderService {
         Order order = new Order();
         order.setTotal(dto.getTotal());
         order.setOrderDate(LocalDate.now());
-
+        order.setRestaurant(restaurantRepository.findById(dto.getRestaurantId()).orElseThrow(() -> new BussinessException("Restaurant not found")));
         order.setUser(user);
 
         List<OrderItem> orderItems = convertItems(order, dto.getItems());

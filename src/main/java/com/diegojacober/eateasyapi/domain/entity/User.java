@@ -86,6 +86,6 @@ public class User implements UserDetails {
     return true;
   }
 
-  @OneToMany( mappedBy = "user" , fetch = FetchType.LAZY )
-    private Set<Order> orders;
+  @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+  private Set<Order> orders;
 }

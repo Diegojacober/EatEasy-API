@@ -5,10 +5,13 @@ import static org.springframework.http.HttpStatus.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,18 +52,20 @@ public class OrderController {
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Order not found"));
     }
 
-    @GetMapping("myorders")
-    public List<OrderInformationDTO> getByUser() {
-        List<Order> ordersByUser = service.getOrdersByUser();
 
+    @GetMapping("myorders")
+    public ResponseEntity<?> getByUser() {
+        List<Order> ordersByUser = service.getOrdersByUser();
         List<OrderInformationDTO> dto = new ArrayList<>();
 
         for (Order order : ordersByUser) {
-            dto.add(
-                    getById(order.getId()));
+            dto.add(getById(order.getId()));
         }
 
-        return dto;
+        Map<String, List<OrderInformationDTO>> responseData = new HashMap<>();
+        responseData.put("data", dto);
+
+        return ResponseEntity.ok(responseData);
     }
 
     private OrderInformationDTO convert(Order order) {
