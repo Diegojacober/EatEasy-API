@@ -41,7 +41,6 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(CREATED)
     public Integer save(@RequestBody @Valid OrderDTO dto) {
-        System.out.println(dto);
         Order pedido = service.save(dto);
         return pedido.getId();
     }
@@ -76,6 +75,7 @@ public class OrderController {
                 .clientName(order.getUser().getFirstname())
                 .total(order.getTotal())
                 .items(convert(order.getItems()))
+                .restaurant(order.getRestaurant())
                 .build();
     }
 
