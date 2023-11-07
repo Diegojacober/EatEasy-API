@@ -1,6 +1,7 @@
 spring:
+#docker run --name postgreebanco -e POSTGRES_PASSWORD=123456 -d -p 5423:5432 postgres
   datasource:
-    url: jdbc:postgresql://localhost:5432/eateasy
+    url: jdbc:postgresql://localhost:5423/eateasy
     username: dev
     password: 123456
     driver-class-name: org.postgresql.Driver
