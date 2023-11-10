@@ -1,4 +1,4 @@
-package com.diegojacober.eateasyapi.rest.controller.dto;
+package com.diegojacober.eateasyapi.rest.controller.dto.requests;
 
 import com.diegojacober.eateasyapi.domain.entity.enums.Role;
 

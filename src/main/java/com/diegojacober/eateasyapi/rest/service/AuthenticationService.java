@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import com.diegojacober.eateasyapi.domain.entity.Token;
 import com.diegojacober.eateasyapi.domain.entity.User;
 import com.diegojacober.eateasyapi.domain.entity.enums.TokenType;
-import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationRequestDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationResponseDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.AuthenticationRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.responses.AuthenticationResponseDTO;
 import com.diegojacober.eateasyapi.rest.exceptions.UserExistsException;
 import com.diegojacober.eateasyapi.rest.repository.TokenRepository;
 import com.diegojacober.eateasyapi.rest.repository.UserRepository;
@@ -72,6 +72,7 @@ public class AuthenticationService {
         return AuthenticationResponseDTO.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .name(user.getFirstname())
                 .build();
     }
 

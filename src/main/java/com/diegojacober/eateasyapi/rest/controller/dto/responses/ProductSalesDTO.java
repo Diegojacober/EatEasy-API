@@ -1,4 +1,4 @@
-package com.diegojacober.eateasyapi.rest.controller.dto;
+package com.diegojacober.eateasyapi.rest.controller.dto.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

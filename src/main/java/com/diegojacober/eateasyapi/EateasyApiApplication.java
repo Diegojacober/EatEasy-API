@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.diegojacober.eateasyapi.rest.controller.dto.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.RegisterRequestDTO;
 import com.diegojacober.eateasyapi.rest.service.AuthenticationService;
 
 import static com.diegojacober.eateasyapi.domain.entity.enums.Role.*;

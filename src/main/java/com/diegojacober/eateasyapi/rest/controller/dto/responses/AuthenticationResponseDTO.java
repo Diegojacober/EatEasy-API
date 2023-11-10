@@ -1,4 +1,4 @@
-package com.diegojacober.eateasyapi.rest.controller.dto;
+package com.diegojacober.eateasyapi.rest.controller.dto.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,4 +17,7 @@ public class AuthenticationResponseDTO {
     private String accessToken;
     @JsonProperty("refresh_token")
     private String refreshToken;
+
+    @JsonProperty("name")
+    private String name;
 }

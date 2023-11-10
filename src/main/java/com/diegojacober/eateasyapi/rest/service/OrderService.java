@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +14,8 @@ import com.diegojacober.eateasyapi.domain.entity.Order;
 import com.diegojacober.eateasyapi.domain.entity.OrderItem;
 import com.diegojacober.eateasyapi.domain.entity.Product;
 import com.diegojacober.eateasyapi.domain.entity.User;
-import com.diegojacober.eateasyapi.rest.controller.dto.OrderDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.OrderItemDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.OrderDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.OrderItemDTO;
 import com.diegojacober.eateasyapi.rest.exceptions.BussinessException;
 import com.diegojacober.eateasyapi.rest.repository.OrderItemRepository;
 import com.diegojacober.eateasyapi.rest.repository.OrderRepository;

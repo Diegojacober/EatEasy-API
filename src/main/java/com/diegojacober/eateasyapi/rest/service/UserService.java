@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.diegojacober.eateasyapi.domain.entity.User;
-import com.diegojacober.eateasyapi.rest.controller.dto.ChangePasswordDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.ChangePasswordDTO;
 import com.diegojacober.eateasyapi.rest.repository.UserRepository;
 
 import java.security.Principal;

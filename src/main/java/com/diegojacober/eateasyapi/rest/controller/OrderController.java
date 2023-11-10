@@ -1,6 +1,7 @@
 package com.diegojacober.eateasyapi.rest.controller;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,12 +25,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.diegojacober.eateasyapi.domain.entity.Order;
 import com.diegojacober.eateasyapi.domain.entity.OrderItem;
-import com.diegojacober.eateasyapi.rest.controller.dto.OrderDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.OrderInformationDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.OrderItemInformationDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.OrderDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.responses.OrderInformationDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.responses.OrderItemInformationDTO;
 import com.diegojacober.eateasyapi.rest.service.OrderService;
 
-import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.validation.Valid;
 
 @RestController

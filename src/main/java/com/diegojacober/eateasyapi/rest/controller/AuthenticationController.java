@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationRequestDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.AuthenticationResponseDTO;
-import com.diegojacober.eateasyapi.rest.controller.dto.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.AuthenticationRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.requests.RegisterRequestDTO;
+import com.diegojacober.eateasyapi.rest.controller.dto.responses.AuthenticationResponseDTO;
 import com.diegojacober.eateasyapi.rest.exceptions.UserExistsException;
 import com.diegojacober.eateasyapi.rest.service.AuthenticationService;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
