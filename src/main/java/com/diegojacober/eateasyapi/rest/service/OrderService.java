@@ -80,7 +80,7 @@ public class OrderService {
     public List<Order> getOrdersByUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
-        return repository.findByUserOrderByOrderDate(user);
+        return repository.findByUserOrderByOrderDateDesc(user);
     }
 
     public Optional<Order> getCompleteOrder(Integer id) {
