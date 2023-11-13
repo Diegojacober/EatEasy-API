@@ -1,5 +1,7 @@
 package com.diegojacober.eateasyapi.rest.service;
 
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -9,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.diegojacober.eateasyapi.domain.entity.Order;
 import com.diegojacober.eateasyapi.domain.entity.OrderItem;
 import com.diegojacober.eateasyapi.domain.entity.Product;
+import com.diegojacober.eateasyapi.domain.entity.Restaurant;
 import com.diegojacober.eateasyapi.domain.entity.User;
 import com.diegojacober.eateasyapi.rest.controller.dto.requests.OrderDTO;
 import com.diegojacober.eateasyapi.rest.controller.dto.requests.OrderItemDTO;
@@ -81,6 +85,11 @@ public class OrderService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         return repository.findByUserOrderByOrderDateDesc(user);
+    }
+
+    public List<Order> getOrdersByRestaurant(Integer restautantId) {
+        Restaurant restaurant = restaurantRepository.findById(restautantId).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Restaurant not found"));
+        return repository.findByRestaurantOrderByOrderDateDesc(restaurant);
     }
 
     public Optional<Order> getCompleteOrder(Integer id) {

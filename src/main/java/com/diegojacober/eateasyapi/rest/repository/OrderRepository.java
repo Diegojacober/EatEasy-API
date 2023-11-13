@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.diegojacober.eateasyapi.domain.entity.Order;
+import com.diegojacober.eateasyapi.domain.entity.Restaurant;
 import com.diegojacober.eateasyapi.domain.entity.User;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     Optional<Order> findByIdFetchItems(@Param("id") Integer id);
 
     List<Order> findByUserOrderByOrderDateDesc(User user);
+
+    List<Order> findByRestaurantOrderByOrderDateDesc(Restaurant restaurant);
 }

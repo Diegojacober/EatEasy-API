@@ -52,13 +52,27 @@ public class OrderController {
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Order not found"));
     }
 
-
     @GetMapping("myorders")
     public ResponseEntity<?> getByUser() {
         List<Order> ordersByUser = service.getOrdersByUser();
         List<OrderInformationDTO> dto = new ArrayList<>();
 
         for (Order order : ordersByUser) {
+            dto.add(getById(order.getId()));
+        }
+
+        Map<String, List<OrderInformationDTO>> responseData = new HashMap<>();
+        responseData.put("data", dto);
+
+        return ResponseEntity.ok(responseData);
+    }
+
+    @GetMapping("restaurants/{id}")
+    public ResponseEntity<?> getByRestaurant(@PathVariable Integer id) {
+        List<Order> ordersByRestaurant = service.getOrdersByRestaurant(id);
+        List<OrderInformationDTO> dto = new ArrayList<>();
+
+        for (Order order : ordersByRestaurant) {
             dto.add(getById(order.getId()));
         }
 
